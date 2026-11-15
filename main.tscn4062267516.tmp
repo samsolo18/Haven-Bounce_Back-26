@@ -1,0 +1,89 @@
+[gd_scene format=3 uid="uid://crqlov1af3462"]
+
+[ext_resource type="Script" uid="uid://bnsuqpnrd1tca" path="res://player.gd" id="1_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://cq7q0m68i3a1e" path="res://Screenshot_2026-11-15_083747-removebg-preview.png" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://coymoj6ubr8ri" path="res://main.gd" id="1_lquwl"]
+[ext_resource type="Texture2D" uid="uid://cparbal8xg7bm" path="res://Background.png" id="2_7mycd"]
+[ext_resource type="Script" uid="uid://bic7golelklid" path="res://goblin.gd" id="3_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://tr3jbku7yvwj" path="res://Goblin-removebg-preview.png" id="3_h2yge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhlqy"]
+size = Vector2(480, 20)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2iv3x"]
+radius = 41.0
+height = 112.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lhlqy"]
+radius = 39.0
+height = 96.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wb0p"]
+size = Vector2(84.5, 32)
+
+[node name="Main" type="Node2D" unique_id=291953884]
+script = ExtResource("1_lquwl")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1512086410]
+position = Vector2(242, 361.25)
+scale = Vector2(0.5298013, 1.2760141)
+texture = ExtResource("2_7mycd")
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1276863224]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=1156940258]
+position = Vector2(238, 709)
+shape = SubResource("RectangleShape2D_lhlqy")
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1987051560 groups=["player"]]
+script = ExtResource("1_0xm2m")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player" unique_id=722996246]
+position = Vector2(246.71875, 438.25003)
+scale = Vector2(0.15856744, 0.17410707)
+texture = ExtResource("1_ig7tw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=773702943]
+position = Vector2(248, 442)
+shape = SubResource("CapsuleShape2D_2iv3x")
+
+[node name="Goblin" type="CharacterBody2D" parent="." unique_id=1695580274]
+collision_layer = 0
+script = ExtResource("3_1bvp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goblin" unique_id=1687772849]
+position = Vector2(96.99999, 658.00006)
+scale = Vector2(0.23932506, 0.31300822)
+texture = ExtResource("3_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin" unique_id=1442536506]
+position = Vector2(96, 658)
+shape = SubResource("CapsuleShape2D_lhlqy")
+
+[node name="HeadStompArea" type="Area2D" parent="Goblin" unique_id=848516715]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin/HeadStompArea" unique_id=1724793117]
+position = Vector2(98, 615)
+shape = SubResource("RectangleShape2D_8wb0p")
+
+[node name="Goblin2" type="CharacterBody2D" parent="." unique_id=2337270]
+collision_layer = 0
+script = ExtResource("3_1bvp3")
+
+[node name="Sprite2D" type="Sprite2D" parent="Goblin2" unique_id=643207141]
+position = Vector2(96.99999, 658.00006)
+scale = Vector2(0.23932506, 0.31300822)
+texture = ExtResource("3_h2yge")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin2" unique_id=170778139]
+position = Vector2(96, 658)
+shape = SubResource("CapsuleShape2D_lhlqy")
+
+[node name="HeadStompArea" type="Area2D" parent="Goblin2" unique_id=1215650886]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goblin2/HeadStompArea" unique_id=1116377513]
+position = Vector2(98, 615)
+shape = SubResource("RectangleShape2D_8wb0p")
+
+[connection signal="body_entered" from="Goblin/HeadStompArea" to="Goblin" method="_on_head_stomp_area_body_entered"]
+[connection signal="body_entered" from="Goblin2/HeadStompArea" to="Goblin2" method="_on_head_stomp_area_body_entered"]
