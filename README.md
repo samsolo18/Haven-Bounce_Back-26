@@ -1,4 +1,4 @@
-# Haunted Crypt#
+# Haunted Crypt #
 **Haunted Crypt is a game where you play as a ghost inside a tower and fight goblins, the aim of the game is to survive as long as possible**
 <p>All code was made in Godot and the art was made using Microsoft Paint</p>
 First, we referred to a powerpoint presentation used during the Hack Club, then the art was made using references from online images. The game works by having the ghost inside a tower and it jumps onto the goblins and bounces up. 
